@@ -16,12 +16,19 @@
           <ul class="nav navbar-nav navbar-right">
             <li><%= link_to "Home",   '/' %></li>
             <li><%= link_to "Help",   '#' %></li>
-            <li><%= link_to "Log in", '/login' %></li>
+          
           </ul>
         </nav>
       </div>
     </header>
     <div class="container">
+      <div class="userInfo">
+          <% if logged_in? %>
+            <i><h4>
+              Logged in as @<%= link_to current_user.username, user_path(current_user.id) %>
+            </h4></i>
+          <% end %>
+        </div>
     <%= yield %>
 
     <footer class="footer">
@@ -29,6 +36,7 @@
     The Film Fan App</a>
     by <a href="https://github.com/Eclecticdynasty">Siobhan Martin</a>
   </small>
+  <%= link_to "Log out", logout_path, method: :delete %>
   <nav>
     <ul>
       <li><%= link_to "About",   '#' %></li>
